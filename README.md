@@ -17,15 +17,9 @@ Unity 버전을 개발하고, 웹 배포를 통해 사용자들이 직접 플레
 ## 1.1) 메인화면 구성
 
 다른세계에서 넘어온 도플갱어 플레이어가 배구로 물리치는 컨셉 
+<img width="1672" height="941" alt="image" src="https://github.com/user-attachments/assets/967a6359-8a89-4dba-bc05-f4ed37c33cdd" />
 
-!game.png
 
-!image.png
-
-!image.png
 
 ## 1.2) 게임 배경
-
-!image.png
-
-!image.png
+<img width="1672" height="941" alt="image" src="https://github.com/user-attachments/assets/18df72a2-d97d-42e9-a1d3-5bb492bb30c3" />
