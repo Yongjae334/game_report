@@ -1,2 +1,19 @@
-# Dumb-Frog
-Unity Volleyball Project
+# 멍 개
+
+## 1) 게임 소개
+
+본 게임은 플레이어가 다른 세계에서 온 도플갱어 CPU와 배구 대결을 펼치는 1인 캐주얼 게임이다. 공이 바닥에 닿으면 상대편이 점수를 얻으며, 11점을 먼저 획득한 쪽이 승리한다.
+
+Unity 버전을 개발하고, 웹 배포를 통해 사용자들이 직접 플레이할 수 있도록 구성한다.
+
+배포 이후에는 접속, 경기 시작, 득점, 경기 종료, 재시작 등의 행동을 로그로 기록한다. 수집한 로그를 활용해 게임의 난이도와 반복 플레이 여부를 분석하고, 공의 속도와 CPU의 반응 속도 등을 개선한다
+
+## 1.1) 메인화면 구성
+
+다른세계에서 넘어온 도플갱어 플레이어가 배구로 물리치는 컨셉 
+<img width="1672" height="941" alt="image" src="https://github.com/user-attachments/assets/967a6359-8a89-4dba-bc05-f4ed37c33cdd" />
+
+
+
+## 1.2) 게임 배경
+<img width="1672" height="941" alt="image" src="https://github.com/user-attachments/assets/18df72a2-d97d-42e9-a1d3-5bb492bb30c3" />
