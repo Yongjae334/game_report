@@ -1,0 +1,22 @@
+{
+  "checks": [
+    "Movement responds quickly and stops without skating",
+    "Jump height and airtime remain bounded",
+    "Receiving a fast spike slows it into an upward arc",
+    "All three spike directions and one-hit cooldown",
+    "Fast ball cannot tunnel through net or side wall",
+    "Net top bounce separates ball; no balancing forever",
+    "One floor contact gives one point and winner serves next",
+    "First to eleven finishes match and restart clears all scores",
+    "Dive remains in own court and has a recovery cooldown",
+    "CPU-versus-mirrored-player stress run stays finite and progresses"
+  ],
+  "stats": {
+    "ticks": 173820,
+    "points": 216,
+    "hits": 888,
+    "spikes": 636,
+    "longestRally": 9.616666666666761,
+    "matches": 12
+  }
+}

@@ -26,6 +26,17 @@ namespace DumbFrog.Arcade
         [Header("공 크기")]
         [Tooltip("공의 지름입니다. 보이는 크기와 충돌 범위가 함께 바뀝니다. 기존 크기는 0.64입니다.")]
         [Range(0.4f, 1.4f)] public float ballDiameter = 0.84f;
+        [Header("슬라이딩 이미지 · 비워두면 포함된 이미지 자동 사용")]
+        public Texture2D playerSlideTexture;
+        public Texture2D cpuSlideTexture;
+        [Range(0.6f, 2.4f)] public float slideSpriteWidth = 1.8f;
+        public float slideVisualYOffset = 0f;
+        [Header("걷기 / 대기 애니메이션")]
+        public bool animateWhileIdle = true;
+        [Range(1f, 20f)] public float walkFramesPerSecond = 11f;
+        [Tooltip("원본 이미지 픽셀 기준 Y 보정. 물리 위치에는 영향을 주지 않습니다.")]
+        public float[] walkFrameYPixels = new float[] { 2f, 1f, 0f, 1f, 2f };
+        [Range(0f, 5f)] public float walkBobMultiplier = 1f;
         [Header("경기")]
         [Range(1, 21)] public int winningScore = 11;
         [Range(0.08f, 0.35f)] public float cpuReaction = 0.14f;
@@ -39,6 +50,7 @@ namespace DumbFrog.Arcade
         private SpriteRenderer[] ghosts = new SpriteRenderer[8];
         private Vector2[] history = new Vector2[8];
         private Sprite[] leftRun, rightRun, leftSpike;
+        private Sprite playerSlideSprite, cpuSlideSprite;
         private Sprite whiteSprite, circleSprite;
         private Texture2D circleTexture;
         private List<Sprite> createdSprites = new List<Sprite>();
@@ -148,6 +160,10 @@ namespace DumbFrog.Arcade
             for (int i = 1; i < 10; i++) Rectangle("NetMesh", 0f, i * 0.23f, 0.24f, 0.024f, 8, new Color(0.74f, 0.81f, 0.9f));
             Rectangle("NetTop", 0f, VolleySimulation.NetHeight, 0.30f, 0.10f, 9, Color.white);
             Rectangle("CenterMark", 0f, -0.07f, 0.4f, 0.12f, 9, Color.white);
+            if (playerSlideTexture == null) playerSlideTexture = Resources.Load<Texture2D>("DumbFrogMotion/PlayerSlide");
+            if (cpuSlideTexture == null) cpuSlideTexture = Resources.Load<Texture2D>("DumbFrogMotion/CPUSlide");
+            playerSlideSprite = MakeSlideSprite(playerSlideTexture, 2f / 64f);
+            cpuSlideSprite = MakeSlideSprite(cpuSlideTexture, 11f / 64f);
             leftRun = Slice(playerSheet, new int[] { 0, 58, 118, 179, 241, 299 }, 1.72f);
             rightRun = Slice(cpuSheet, new int[] { 0, 59, 119, 181, 243, 301 }, 1.72f);
             leftSpike = Slice(spikeSheet, new int[] { 0, 61, 124, 185 }, 1.72f);
@@ -255,17 +271,49 @@ namespace DumbFrog.Arcade
             FitCamera();
         }
 
+        private Sprite MakeSlideSprite(Texture2D texture, float bottomPivot)
+        {
+            if (texture == null) return null;
+            texture.filterMode = FilterMode.Point;
+            // 원본의 아래 투명 여백(플레이어 2px / CPU 11px)을 피벗으로 보정합니다.
+            return FullSprite(texture, new Vector2(0.5f, bottomPivot), texture.width);
+        }
+
         private void DrawPlayer(VolleyBody body, SpriteRenderer renderer, SpriteRenderer shadow, Sprite[] frames,
             Vector2 previous, float t, int side, ref float squash, float dt)
         {
             Vector2 position = Vector2.Lerp(previous, new Vector2(body.x, body.y), t);
-            renderer.transform.position = new Vector3(position.x, position.y, 0f);
-            int frame = Mathf.Abs(body.vx) > 0.3f ? (int)(animationTime * 11f) % frames.Length : 0;
-            if (body.y > 0.08f) frame = body.vy > 0f ? 2 : 3;
-            renderer.sprite = side == 0 && body.spikeWindow > 0f ? leftSpike[(int)(animationTime * 15f) % leftSpike.Length] : frames[frame];
+            bool sliding = body.slide > 0f;
+            bool airborne = body.y > 0.08f;
+            bool spiking = !sliding && side == 0 && body.spikeWindow > 0f;
+            bool walking = !sliding && !airborne && !spiking;
+            int frame = (animateWhileIdle || Mathf.Abs(body.vx) > 0.3f)
+                ? (int)(animationTime * Mathf.Max(1f, walkFramesPerSecond)) % frames.Length : 0;
+            if (airborne) frame = body.vy > 0f ? 2 : 3;
+            Sprite slideSprite = side == 0 ? playerSlideSprite : cpuSlideSprite;
+            float yOffset = 0f;
             squash = Mathf.Max(0f, squash - dt * 7f);
-            if (body.slide > 0f) renderer.transform.localScale = new Vector3(1.25f, 0.60f, 1f);
-            else renderer.transform.localScale = new Vector3(1f + squash * 0.15f, 1f - squash * 0.12f, 1f);
+            if (sliding && slideSprite != null)
+            {
+                renderer.sprite = slideSprite;
+                // 두 슬라이드 원본 모두 오른쪽을 향하므로 이동 방향에 맞춰 반전합니다.
+                renderer.flipX = body.facing < 0f;
+                renderer.transform.localScale = Vector3.one * Mathf.Clamp(slideSpriteWidth, 0.6f, 2.4f);
+                yOffset = slideVisualYOffset;
+            }
+            else
+            {
+                renderer.sprite = spiking ? leftSpike[(int)(animationTime * 15f) % leftSpike.Length] : frames[frame];
+                renderer.flipX = side == 0;
+                renderer.transform.localScale = sliding ? new Vector3(1.25f, 0.60f, 1f)
+                    : new Vector3(1f + squash * 0.15f, 1f - squash * 0.12f, 1f);
+                if (walking && walkFrameYPixels != null && walkFrameYPixels.Length > frame)
+                {
+                    // 동일한 프레임 번호로 이미지와 Y 보정을 함께 선택합니다.
+                    yOffset = walkFrameYPixels[frame] / frames[frame].pixelsPerUnit * Mathf.Max(0f, walkBobMultiplier);
+                }
+            }
+            renderer.transform.position = new Vector3(position.x, position.y + yOffset, 0f);
             shadow.transform.position = new Vector3(position.x, 0.035f, 0f);
             shadow.transform.localScale = new Vector3(Mathf.Max(0.8f, 1.55f - position.y * 0.14f), 0.18f, 1f);
         }

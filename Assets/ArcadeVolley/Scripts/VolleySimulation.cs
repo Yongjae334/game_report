@@ -213,7 +213,8 @@ namespace DumbFrog.Arcade
             float dx = Ball.x - p.x, dy = Ball.y - BodyY(p);
             float distance = Sqrt(dx * dx + dy * dy);
             float reach = BodyRadius(p) + BallRadius;
-            if (p.spikeWindow > 0f && p.y > 0.12f && distance < reach + 0.23f && dy > -0.25f)
+            if (p.spikeWindow > 0f && p.y > 0.12f && distance < reach + 0.23f && dy > -0.25f
+                && (side == 0 || CanCPUSpike()))
             {
                 Strike(p, side); return;
             }
@@ -234,6 +235,15 @@ namespace DumbFrog.Arcade
             }
             p.touchLock = 0.10f; SpikeGlow = 0f;
             LastHitSide = side; LastHitWasSpike = false; HitSerial++;
+        }
+
+        // CPU는 왼쪽(상대 코트)을 바라봅니다. 등 뒤/몸 아래 공을 잡아채지 않습니다.
+        private bool CanCPUSpike()
+        {
+            float dx = Ball.x - Right.x, dy = Ball.y - BodyY(Right);
+            float reach = BodyRadius(Right) + BallRadius + 0.06f;
+            return Right.y > 0.12f && Right.slide <= 0f && Right.touchLock <= 0f
+                && dx <= -0.12f && dy >= 0.05f && dx * dx + dy * dy <= reach * reach;
         }
 
         private void Strike(VolleyBody p, int side)
@@ -287,7 +297,7 @@ namespace DumbFrog.Arcade
                 CpuInput.jump = true; cpuJumpWait = 0.85f;
             }
             float dx = Ball.x - Right.x, dy = Ball.y - BodyY(Right);
-            if (Right.y > 0.12f && dx * dx + dy * dy < 1.65f * 1.65f && dy > -0.2f)
+            if (Right.spikeCooldown <= 0f && CanCPUSpike())
             {
                 CpuInput.spike = true;
                 if (Ball.y > 4.1f && Ball.x < 2.8f) CpuInput.aim = -1;

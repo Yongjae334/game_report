@@ -175,8 +175,21 @@ MonoBehaviour:
   koreanFont: {fileID: 12800000, guid: 307e4f3e2ca65625b4ffe8b472195b6b, type: 3}
   showControlHints: 0
   showPlayerNames: 0
-  scoreFontSize: 48
+  scoreFontSize: 54
   ballDiameter: 1.4
+  playerSlideTexture: {fileID: 2800000, guid: e5de74865eafb944687f9c025e256bd8, type: 3}
+  cpuSlideTexture: {fileID: 2800000, guid: 36688b1d84396fb4aab1e4a3020b6b8e, type: 3}
+  slideSpriteWidth: 1.8
+  slideVisualYOffset: 0
+  animateWhileIdle: 1
+  walkFramesPerSecond: 11
+  walkFrameYPixels:
+  - 2
+  - 1
+  - 0
+  - 1
+  - 2
+  walkBobMultiplier: 1
   winningScore: 11
   cpuReaction: 0.14
   cpuSpeed: 0.94

@@ -227,6 +227,7 @@ GameObject:
   - component: {fileID: 8000000004}
   - component: {fileID: 8000000005}
   - component: {fileID: 8000000252}
+  - component: {fileID: 8000000257}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -5257,6 +5258,24 @@ MonoBehaviour:
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
   m_ForceModuleActive: 0
+--- !u!114 &8000000257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8000000001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5796c21573352c0b6fea1da3cf79403, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emberCount: 72
+  riseSpeed: 0.8
+  emberOpacity: 0.7
+  hoverScale: 1.045
+  pressedScale: 0.97
+  responseSpeed: 18
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
