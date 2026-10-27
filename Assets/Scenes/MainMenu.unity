@@ -3188,7 +3188,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uB3C4\uD50C\uAC31\uC5B4\uC640 \uD3BC\uCE58\uB294 1:1 \uBC30\uAD6C \uB300\uACB0"
+  m_Text: "\uC67C\uCABD: 1P \uD0A4  |  \uC624\uB978\uCABD: 2P \uD0A4   (CPU \uB300\uC804\uC740 1P \uD0A4 \uC0AC\uC6A9)"
 --- !u!1 &8000000151
 GameObject:
   m_ObjectHideFlags: 0
@@ -3342,7 +3342,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: A / D
+  m_Text: "D G  |  \u2190 \u2192"
 --- !u!1 &8000000159
 GameObject:
   m_ObjectHideFlags: 0
@@ -3575,7 +3575,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: SPACE
+  m_Text: "R  |  \u2191"
 --- !u!1 &8000000171
 GameObject:
   m_ObjectHideFlags: 0
@@ -3808,7 +3808,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: J
+  m_Text: "X  |  Shift"
 --- !u!1 &8000000183
 GameObject:
   m_ObjectHideFlags: 0
@@ -3887,7 +3887,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC2AC\uB77C\uC774\uB4DC"
+  m_Text: "\uC2AC\uB77C\uC774\uB529 (2P\uB294 \uC624\uB978\uCABD Shift)"
 --- !u!1 &8000000187
 GameObject:
   m_ObjectHideFlags: 0
@@ -4041,7 +4041,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: K
+  m_Text: "Z  |  Enter"
 --- !u!1 &8000000195
 GameObject:
   m_ObjectHideFlags: 0
@@ -4120,7 +4120,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uACF5\uC911 K \xB7 W+K \uB192\uAC8C / S+K \uC544\uB798\uB85C"
+  m_Text: "\uACF5\uC911 \uC2A4\uD30C\uC774\uD06C \u00B7 \uC544\uB798+ \uB0B4\uB9AC\uAF42\uAE30 / \uB4A4\uB85C+ \uB192\uAC8C"
 --- !u!1 &8000000199
 GameObject:
   m_ObjectHideFlags: 0

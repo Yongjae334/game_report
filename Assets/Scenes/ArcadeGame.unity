@@ -169,16 +169,20 @@ MonoBehaviour:
   backgroundTexture: {fileID: 2800000, guid: 8950b7dbd24403a43bd2677b9add9859, type: 3}
   groundTexture: {fileID: 2800000, guid: 6d8177116de11ad4fa3b379255139390, type: 3}
   ballTexture: {fileID: 2800000, guid: e0f07a5119f32de4c85b0303802588d1, type: 3}
-  playerSheet: {fileID: 2800000, guid: b68ccc798a663574584d0f22e5b71495, type: 3}
+  playerSheet: {fileID: 2800000, guid: 8574316802a541b3b064e96f40bbc892, type: 3}
   spikeSheet: {fileID: 2800000, guid: 360bca3310504ad4785a4e8513971c11, type: 3}
-  cpuSheet: {fileID: 2800000, guid: 498febbc77a3c8d48b385ee7a349b58a, type: 3}
+  cpuSheet: {fileID: 2800000, guid: 51b63a9d86c24a03a08aebabc4f82074, type: 3}
   koreanFont: {fileID: 12800000, guid: 307e4f3e2ca65625b4ffe8b472195b6b, type: 3}
   showControlHints: 0
   showPlayerNames: 0
   scoreFontSize: 54
   ballDiameter: 1.4
-  playerSlideTexture: {fileID: 2800000, guid: e5de74865eafb944687f9c025e256bd8, type: 3}
-  cpuSlideTexture: {fileID: 2800000, guid: 36688b1d84396fb4aab1e4a3020b6b8e, type: 3}
+  playerSlideTexture: {fileID: 2800000, guid: d88cd326081a4b358f4aef887bdccaef, type: 3}
+  cpuSlideTexture: {fileID: 2800000, guid: 7a579f8b854442cbb78f46bd2223ebf7, type: 3}
+  cpuSpikeSheet: {fileID: 2800000, guid: 0977603da3cc4ddab53211826f83f133, type: 3}
+  playerWinSheet: {fileID: 2800000, guid: 9035d6dcf59c40479c202b677d2ad207, type: 3}
+  playerLoseSheet: {fileID: 2800000, guid: aac8ff80228b4710936905a80de83b62, type: 3}
+  cpuLoseSheet: {fileID: 2800000, guid: 484ac83e382345bb82210b63b243d304, type: 3}
   slideSpriteWidth: 1.8
   slideVisualYOffset: 0
   animateWhileIdle: 1
